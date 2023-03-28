@@ -1,0 +1,8 @@
+.BasicSettings {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-gap: 15px;
+}
+.selects {
+  display: grid;
+}
