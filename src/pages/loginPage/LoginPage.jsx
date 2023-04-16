@@ -41,14 +41,17 @@ const LoginPage = () => {
   }, [userId, mainPage]);
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    postLoginData(data).then(
-      (res) =>
-        sessionStorage.setItem("token", res.data.token) &
-        dispatch(getUserId(res.data.user_id)) &
-        localStorage.setItem("user", JSON.stringify(res.data.user))
-    );
+    if (data) {
+      postLoginData(data).then(
+        (res) =>
+          sessionStorage.setItem("token", res?.data?.token) &&
+          dispatch(getUserId(res.data.user_id)) &&
+          localStorage.setItem("user", JSON.stringify(res.data.user))
+      );
+    }
     reset();
   };
+  console.log(userId);
   return (
     <div className={classes.LoginPage}>
       <div className={classes.inner}>

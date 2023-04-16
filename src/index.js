@@ -10,6 +10,15 @@ import MainPage from "./pages/mainPage/MainPage";
 import Tour from "./components/tour/Tour";
 import TableComp from "./components/tour/tableWrapper/TableComp";
 import AddTourComp from "./components/tour/addTourComp/AddTourComp";
+import TourTypePage from "./pages/tourTypesPage/TourTypePage";
+import TourTypes from "./components/tourTypes/TourTypes";
+import TableTypes from "./components/tourTypes/typeTableComp/tableType/TableTypes";
+import TypeTableComp from "./components/tourTypes/typeTableComp/TypeTableComp";
+import AddTourTypeComp from "./components/tourTypes/addTourTypeComp/AddTourTypeComp";
+import ReviewComponent from "./components/tourTypes/reviewComponent/ReviewComponent";
+import Destinations from "./components/destinations/Destinations";
+import DestinationsTable from "./components/destinations/destinationsTable/DestinationsTable";
+import DestinationsTable2 from "./components/destinations/destinationsTable/DestinationsTable2";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +38,25 @@ const router = createBrowserRouter([
           { path: "/main/tour/all", element: <TableComp /> },
           { path: "/main/tour/files", element: <TableComp /> },
           { path: "/main/tour/add", element: <AddTourComp /> },
+        ],
+      },
+      {
+        path: "/main/tour_types",
+        element: <TourTypes />,
+        children: [
+          { path: "/main/tour_types/all", element: <TypeTableComp /> },
+          { path: "/main/tour_types/add", element: <AddTourTypeComp /> },
+          { path: "/main/tour_types/edit/:id", element: <ReviewComponent /> },
+        ],
+      },
+      {
+        path: "/main/destinations",
+        element: <Destinations />,
+        children: [
+          { path: "/main/destinations/all", element: <DestinationsTable /> },
+          { path: "/main/destinations/add", element: <AddTourTypeComp /> },
+          { path: "/main/destinations/allCities", element: <DestinationsTable2 /> },
+          { path: "/main/destinations/edit/:id", element: <ReviewComponent /> },
         ],
       },
     ],

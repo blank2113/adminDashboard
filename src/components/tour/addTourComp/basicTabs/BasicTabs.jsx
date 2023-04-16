@@ -8,6 +8,7 @@ import BasicSettings from "./basicSettings/BasicSettings";
 import DateAndPrice from "./dateAndPrice/DateAndPrice";
 import DescriptionComp from "./descriptionComp/DescriptionComp";
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 

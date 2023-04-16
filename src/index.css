@@ -34,3 +34,33 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.icons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  
+}
+.icons__item{
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.icons__item2{
+  color: #fff;
+  background-color: #dc3545;
+  border-radius: 5px;
+  padding: 3px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.icons__item:hover{
+  transform: scale(1.1);
+}
+.icons__item2:hover{
+  transform: scale(1.1);
+}

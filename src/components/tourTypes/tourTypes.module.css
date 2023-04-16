@@ -1,0 +1,75 @@
+.TourTypes {
+    margin: 10px;
+    padding: 20px;
+  }
+  .inner h2 {
+    font-size: 25px;
+    font-weight: 700;
+    width: 300px;
+    text-align: center;
+    border-radius: 15px;
+    padding: 5px 10px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 7px 14px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 7px 14px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 7px 14px 0px rgba(34, 60, 80, 0.2);
+  }
+  .btnGroup {
+    display: grid;
+    grid-template-columns: repeat(2,220px);
+    grid-template-rows: 35px;
+    grid-gap: 10px;
+    margin: 20px 0;
+    transition: all 0.2s;
+  }
+  .btnGroup:nth-child(even) button:hover {
+    transform: scale(1.04, 1.04);
+  }
+  .btnGroup:nth-child(even) button:active {
+    transform: scale(1, 1);
+  }
+  .btnGroup:nth-child(even) button {
+    transition: all 0.13s;
+  }
+  .allBtn {
+    border: none;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 0.3fr 0.6fr;
+    align-items: center;
+    justify-items: center;
+    padding: 2px 5px;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+  }
+  .fileBtn {
+    border: none;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 2px 5px;
+    cursor: pointer;
+    background-color: #ffc107;
+  }
+  .addBtn {
+    border: none;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 2px 5px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+  }
+  

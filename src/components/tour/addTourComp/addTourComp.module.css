@@ -3,8 +3,99 @@
   -webkit-box-shadow: 0px -2px 8px 2px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px -2px 8px 2px rgba(34, 60, 80, 0.2);
   box-shadow: 0px -2px 8px 2px rgba(34, 60, 80, 0.2);
-  padding: 20px;
+  padding: 40px;
   border-radius: 15px;
   height: 700px;
   overflow: auto;
+}
+.BasicSettings {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-gap: 20px;
+}
+.BasicSettings h3 {
+  text-align: center;
+  font-weight: 700;
+}
+.DateAndPrice h3 {
+  text-align: center;
+  font-weight: 700;
+}
+.selects {
+  display: grid;
+}
+.selects_transports{
+  display: grid;
+  position: relative;
+  margin: 40px 0;
+}
+.selects_transports::before{
+  content: "Выберите тип транспрота, он будет показан на странице с туром";
+  position: absolute;
+  bottom: -15px;
+  font-size: 12px;
+}
+.selects_transports h4{
+  margin: 40px 0 20px 0;
+}
+.DateAndPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 50px 0;
+  /* background-color: rgba(231, 231, 231, 0.753); */
+}
+.date {
+  width: 100%;
+}
+.DateAndPrice h4 {
+  text-align: center;
+  font-size: 20px;
+  margin: 30px 0;
+  font-weight: 600;
+}
+.top_price {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 15px;
+  margin: 20px 0;
+}
+.mid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  grid-gap: 40px;
+  margin: 20px 0 40px 0;
+}
+.mid_item h4 {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 20px;
+}
+.mid_item {
+  width: 100%;
+}
+.mid_item_inner {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-gap: 20px;
+  align-items: flex-start;
+  justify-items: center;
+}
+
+.Descr h3 {
+  text-align: center;
+  font-weight: 700;
+  margin: 40px 0;
+}
+.img1{
+  width: 700px;
+  height: auto;
+  object-fit: cover;
+}
+.image h3{
+  text-align: center;
+  font-weight: 700;
 }
