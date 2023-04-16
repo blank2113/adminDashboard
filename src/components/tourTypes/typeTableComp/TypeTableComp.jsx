@@ -29,7 +29,7 @@ const TypeTableComp = () => {
           my: "20px",
           backgroundColor: "#fff",
           borderRadius: "15px",
-          width: "30%",
+          width: "500px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

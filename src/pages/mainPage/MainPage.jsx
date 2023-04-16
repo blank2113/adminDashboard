@@ -32,7 +32,7 @@ const MainPage = () => {
     <div className={classes.MainPage}>
       <ThemeProvider theme={theme}>
         <Nav />
-        <div id="detail">
+        <div className="detail">
           <Header />
           <Outlet />
         </div>

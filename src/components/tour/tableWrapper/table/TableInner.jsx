@@ -13,7 +13,8 @@ const TableInner = ({ data, firstNewsIndex, lastNewsIndex }) => {
       component={Paper}
       sx={{
         minWidth: 650,
-        height: "650px",
+        minHeight: 450,
+        maxHeight:500,
         padding: "20px",
         boxShadow: "0px -2px 8px 2px rgba(34, 60, 80, 0.2)",
         borderRadius: "15px"

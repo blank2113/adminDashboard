@@ -1,6 +1,7 @@
 .Tour {
   margin: 10px;
   padding: 20px;
+  height: 100vh;
 }
 .inner h2 {
   font-size: 25px;

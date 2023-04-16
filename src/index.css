@@ -64,3 +64,6 @@ a {
 .icons__item2:hover{
   transform: scale(1.1);
 }
+.detail{
+  min-height: 100vh;
+}
