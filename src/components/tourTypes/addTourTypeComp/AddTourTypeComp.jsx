@@ -1,13 +1,33 @@
 import { Button, TextField } from "@mui/material";
 import { Editor } from "@tinymce/tinymce-react";
 import React, { useEffect, useRef, useState } from "react";
+import { useAddTourTypeMutation } from "../../../store/middleWares/mainApi";
 import classes from "./addTourTypeComp.module.css";
+import { useForm } from "react-hook-form";
 
 const AddTourTypeComp = () => {
   const [file, setFile] = useState();
   const [status, setStatus] = useState(false);
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [url, setUrl] = useState("");
+  const [metakeywords, setMetakeywords] = useState("");
+  const [metadescription, setMetadescription] = useState("");
+  const [sorting, setSorting] = useState("");
   const [previews, setPreviews] = useState();
+  const [addTourType] = useAddTourTypeMutation();
   const editorRef = useRef(null);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: "onBlur",
+  });
+
+ 
+
   const log = () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
@@ -34,6 +54,28 @@ const AddTourTypeComp = () => {
       };
     }
   }, [file]);
+
+  const onSubmit = async () => {
+   let data = new FormData();
+   data.append("parent", 0)
+   data.append("name",name)
+   data.append("type",type)
+   data.append("url",url)
+   data.append("photo",file)
+   data.append("description",editorRef.current.getContent())
+   data.append("title","")
+   data.append("metakeywords",metakeywords)
+   data.append("metadescription",metadescription)
+   data.append("sorting",sorting)
+    if (data) {
+      await addTourType(data)
+        .then(
+          (res) =>
+            console.log(res.data)
+        )
+    }
+    reset();
+  };
   return (
     <div className={classes.AddTourTypeComp}>
       <h1>Добавление</h1>
@@ -44,6 +86,7 @@ const AddTourTypeComp = () => {
           label="Название"
           defaultValue=""
           size="small"
+          onChange={e => setName(e.target.value)}
           sx={{ width: "100%" }}
         />
         <TextField
@@ -52,6 +95,7 @@ const AddTourTypeComp = () => {
           label="Ссылка на тип"
           defaultValue=""
           size="small"
+          onChange={e => setType(e.target.value)}
           sx={{ width: "100%" }}
         />
         <Editor
@@ -80,6 +124,7 @@ const AddTourTypeComp = () => {
           label="Metakeywords"
           defaultValue=""
           size="small"
+          onChange={e => setMetakeywords(e.target.value)}
           sx={{ width: "100%" }}
         />
         <TextField
@@ -88,6 +133,7 @@ const AddTourTypeComp = () => {
           label="Metadescription"
           defaultValue=""
           size="small"
+          onChange={e => setMetadescription(e.target.value)}
           sx={{ width: "100%" }}
         />
         <div className={classes.image}>
@@ -101,13 +147,19 @@ const AddTourTypeComp = () => {
           </div>
           <TextField
             type="file"
-            onChange={(e) => setFile(e.target.files)}
+            onChange={(e) => setFile(e.target.files[0])}
             sx={{ width: "100%", my: "20px" }}
           />
         </div>
         <div>
-        <Button size="medium" variant="contained" sx={{color: "#000"}}>Сохранить изменения</Button>
-
+          <Button
+            size="medium"
+            variant="contained"
+            onClick={onSubmit}
+            sx={{ color: "#000" }}
+          >
+            Сохранить изменения
+          </Button>
         </div>
       </form>
     </div>

@@ -11,7 +11,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#bfe98b",
-      contrastText: "#fff",
+      contrastText: "#000",
     },
     secondary: {
       main: "#bfe98b",

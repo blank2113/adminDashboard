@@ -10,7 +10,7 @@ const initialState = {
       icon: "fa-solid fa-signs-post",
     },
     { name: "Города", link: "/main/destinations/all", icon: "fa-solid fa-city" },
-    { name: "Гостиницы", link: "/main/hotels", icon: "fa-solid fa-hotel" },
+    { name: "Гостиницы", link: "/main/hotels/all", icon: "fa-solid fa-hotel" },
     { name: "Статьи", link: "/main/articles", icon: "fa-solid fa-comments" },
     { name: "Отзывы", link: "/main/comments", icon: "fa-solid fa-file" },
     { name: "FAQ", link: "/main/faq", icon: "fa-solid fa-circle-question" },

@@ -5,25 +5,40 @@ export const mainApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.minzifatravel.com/api/v1/admin/",
   }),
-  tagTypes: ['TourTypes'],
+  tagTypes: ["TourTypes"],
   endpoints: (builder) => ({
     getAllTours: builder.query({
       query: () => "tours",
     }),
     getAllTourTypes: builder.query({
       query: () => "tourType",
-      providesTags: ['TourTypes'],
+      providesTags: ["TourTypes"],
+    }),
+    addTourType: builder.mutation({
+      query: (payload) => ({
+        url: "/tourType",
+        method: "POST",
+        body: payload,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
+      invalidatesTags: ["TourTypes"],
     }),
     deleteTourTypes: builder.mutation({
-     query:(id)=>({
-        url: `/tourType/${id}`,
+      query: (id) => ({
+        url: `tourType/${id}`,
         method: "DELETE",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
-     }),
-     invalidatesTags: ['TourTypes'],
+      }),
+      invalidatesTags: ["TourTypes"],
     }),
   }),
 });
 
-export const { useGetAllToursQuery, useGetAllTourTypesQuery,useDeleteTourTypesMutation } = mainApi;
+export const {
+  useGetAllToursQuery,
+  useGetAllTourTypesQuery,
+  useDeleteTourTypesMutation,
+  useAddTourTypeMutation
+} = mainApi;

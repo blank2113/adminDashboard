@@ -19,7 +19,7 @@ const Destinations = () => {
           </button>
           <button
             className={classes.addBtn}
-            onClick={() => navigate("/main/tour_types/add")}
+            onClick={() => navigate("/main/destinations/addCity")}
           >
             <i className="fa-solid fa-plus" />
             Добавить город
@@ -32,7 +32,7 @@ const Destinations = () => {
           </button>
           <button
             className={classes.addBtn}
-            onClick={() => navigate("/main/tour_types/add")}
+            onClick={() => navigate("/main/destinations/addCountry")}
           >
             <i className="fa-solid fa-plus" />
             Добавить страну

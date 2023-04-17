@@ -2,7 +2,5 @@
   display: grid;
   grid-template-columns: 1fr 6fr;
   background-color: #e1ffbd73;
-  /* overflow: hidden; */
-  display: flex;
-  height: 100vh;
+  overflow: hidden;
 }

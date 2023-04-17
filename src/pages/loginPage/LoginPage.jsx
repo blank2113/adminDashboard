@@ -35,7 +35,7 @@ const LoginPage = () => {
     mode: "onBlur",
   });
   useEffect(() => {
-    if (userId) {
+    if (userId === "expert") {
       mainPage("main/tour/all");
     }
   }, [userId, mainPage]);
@@ -44,14 +44,13 @@ const LoginPage = () => {
     if (data) {
       postLoginData(data).then(
         (res) =>
-          sessionStorage.setItem("token", res?.data?.token) &&
-          dispatch(getUserId(res.data.user_id)) &&
+          sessionStorage.setItem("token", res?.data?.token) &
+          dispatch(getUserId(res.data.user.role)) &
           localStorage.setItem("user", JSON.stringify(res.data.user))
-      );
+      )
     }
-    reset();
   };
-  console.log(userId);
+
   return (
     <div className={classes.LoginPage}>
       <div className={classes.inner}>

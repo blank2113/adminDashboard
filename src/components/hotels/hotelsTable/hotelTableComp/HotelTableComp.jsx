@@ -9,10 +9,8 @@ import Paper from "@mui/material/Paper";
 import { useDeleteTourTypesMutation } from "../../../../store/middleWares/mainApi";
 import { useNavigate } from "react-router-dom";
 
-const TableTypes = ({ data, firstNewsIndex, lastNewsIndex }) => {
-  const [deleteTourType]= useDeleteTourTypesMutation()
-  const navigate = useNavigate()
-  console.log(data);
+const HotelTableComp = ({ data, firstNewsIndex, lastNewsIndex }) => {
+    const navigate = useNavigate()
   return (
     <TableContainer
       component={Paper}
@@ -30,19 +28,13 @@ const TableTypes = ({ data, firstNewsIndex, lastNewsIndex }) => {
               sx={{ fontWeight: "700", fontSize: "18px" }}
               align="left"
             >
-              Тип тура
+              Название
             </TableCell>
             <TableCell
               sx={{ fontWeight: "700", fontSize: "18px" }}
               align="center"
             >
-              Ссылка
-            </TableCell>
-            <TableCell
-              sx={{ fontWeight: "700", fontSize: "18px" }}
-              align="center"
-            >
-              Количетсво туров
+              Страна
             </TableCell>
             <TableCell
               sx={{ fontWeight: "700", fontSize: "18px" }}
@@ -62,16 +54,15 @@ const TableTypes = ({ data, firstNewsIndex, lastNewsIndex }) => {
                   <TableCell component="th" scope="row">
                     {row?.name}
                   </TableCell>
-                  <TableCell align="center">{row.url}</TableCell>
-                  <TableCell align="center">{row.parent}</TableCell>
+                  <TableCell component="th" scope="row">
+                    {row?.country}
+                  </TableCell>
                   <TableCell align="right">
                     <div className="icons">
-                      <div className="icons__item" onClick={()=> navigate(`/main/tour_types/edit/${row.id}`)}>
-                        <i
-                          className="fa-solid fa-pen-to-square"
-                        />
+                      <div className="icons__item">
+                        <i className="fa-solid fa-pen-to-square" onClick={()=> navigate(`/main/hotels/edit/${row.id}`)}/>
                       </div>
-                      <div className="icons__item2" onClick={()=> deleteTourType(parseInt(row.id))}>
+                      <div className="icons__item2">
                         <i className="fa-solid fa-trash" />
                       </div>
                     </div>
@@ -85,4 +76,4 @@ const TableTypes = ({ data, firstNewsIndex, lastNewsIndex }) => {
   );
 };
 
-export default TableTypes;
+export default HotelTableComp;

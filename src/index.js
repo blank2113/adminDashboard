@@ -19,6 +19,12 @@ import ReviewComponent from "./components/tourTypes/reviewComponent/ReviewCompon
 import Destinations from "./components/destinations/Destinations";
 import DestinationsTable from "./components/destinations/destinationsTable/DestinationsTable";
 import DestinationsTable2 from "./components/destinations/destinationsTable/DestinationsTable2";
+import AddCityComp from "./components/destinations/addCityComp/AddCityComp";
+import AddCountryComp from "./components/destinations/addCountryComp/AddCountryComp";
+import Hotels from "./components/hotels/Hotels";
+import HotelsTable from "./components/hotels/hotelsTable/HotelsTable";
+import AddHotelsComp from "./components/hotels/addHotelsComp/AddHotelsComp";
+import EditHotelsComp from "./components/hotels/editHotelsComp/EditHotelsComp";
 
 const router = createBrowserRouter([
   {
@@ -54,9 +60,19 @@ const router = createBrowserRouter([
         element: <Destinations />,
         children: [
           { path: "/main/destinations/all", element: <DestinationsTable /> },
-          { path: "/main/destinations/add", element: <AddTourTypeComp /> },
+          { path: "/main/destinations/addCity", element: <AddCityComp /> },
+          { path: "/main/destinations/addCountry", element: <AddCountryComp /> },
           { path: "/main/destinations/allCities", element: <DestinationsTable2 /> },
           { path: "/main/destinations/edit/:id", element: <ReviewComponent /> },
+        ],
+      },
+      {
+        path: "/main/hotels",
+        element: <Hotels />,
+        children: [
+          { path: "/main/hotels/all", element: <HotelsTable /> },
+          { path: "/main/hotels/add", element: <AddHotelsComp /> },
+          { path: "/main/hotels/edit/:id", element: <EditHotelsComp /> },
         ],
       },
     ],
