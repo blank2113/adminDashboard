@@ -8,9 +8,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDeleteTourTypesMutation } from "../../../../store/middleWares/mainApi";
 import { useNavigate } from "react-router-dom";
+import { useDeleteDestinationMutation } from '../../../../store/middleWares/citiesApi';
 
 const DestTableComp = ({ data, firstNewsIndex, lastNewsIndex }) => {
-    const [deleteTourType]= useDeleteTourTypesMutation()
+    const [deleteDestination]= useDeleteDestinationMutation()
     const navigate = useNavigate()
   
   return (
@@ -52,12 +53,12 @@ const DestTableComp = ({ data, firstNewsIndex, lastNewsIndex }) => {
                 </TableCell>
                 <TableCell align="right">
                   <div className="icons">
-                    <div className="icons__item" onClick={()=> navigate(`/main/tour_types/edit/${row.id}`)}>
+                    <div className="icons__item" onClick={()=> navigate(`/main/destinations/edit/${row.id}`)}>
                       <i
                         className="fa-solid fa-pen-to-square"
                       />
                     </div>
-                    <div className="icons__item2" onClick={()=> deleteTourType(row.id)}>
+                    <div className="icons__item2" onClick={()=> deleteDestination(row.id)}>
                       <i className="fa-solid fa-trash" />
                     </div>
                   </div>

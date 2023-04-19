@@ -25,6 +25,7 @@ import Hotels from "./components/hotels/Hotels";
 import HotelsTable from "./components/hotels/hotelsTable/HotelsTable";
 import AddHotelsComp from "./components/hotels/addHotelsComp/AddHotelsComp";
 import EditHotelsComp from "./components/hotels/editHotelsComp/EditHotelsComp";
+import EditDestinationComp from "./components/destinations/editDestinationComp/EditDestinationComp";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
           { path: "/main/destinations/addCity", element: <AddCityComp /> },
           { path: "/main/destinations/addCountry", element: <AddCountryComp /> },
           { path: "/main/destinations/allCities", element: <DestinationsTable2 /> },
-          { path: "/main/destinations/edit/:id", element: <ReviewComponent /> },
+          { path: "/main/destinations/edit/:id", element: <EditDestinationComp /> },
         ],
       },
       {

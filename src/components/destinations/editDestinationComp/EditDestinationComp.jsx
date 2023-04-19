@@ -1,107 +1,103 @@
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { Editor } from "@tinymce/tinymce-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
-  useEditTourTypeMutation,
-  useGetTourTypesOneQuery,
-} from "../../../store/middleWares/mainApi";
-import classes from "./reviewComponent.module.css";
+  useEditDestinationMutation,
+  useGetOneDestinationQuery,
+} from "../../../store/middleWares/citiesApi";
+import classes from "./editDestinationComp.module.css";
 
-const ReviewComponent = () => {
+const EditDestinationComp = () => {
   const { id } = useParams();
-  const { data = [] } = useGetTourTypesOneQuery(id);
-  const [file, setFile] = useState(null);
-  const [status, setStatus] = useState(false);
+  const { data = [] } = useGetOneDestinationQuery(id);
   const [name, setName] = useState("");
-  const [type, setType] = useState("");
+  const [country, setCountry] = useState("");
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
   const [metakeywords, setMetakeywords] = useState("");
   const [metadescription, setMetadescription] = useState("");
-  const [sorting, setSorting] = useState(0);
-  const [previews, setPreviews] = useState();
   const editorRef = useRef(null);
-  const [editTourType] = useEditTourTypeMutation();
+  const [previews, setPreviews] = useState(null);
+  const [file, setFile] = useState(null);
+  const [editDestination] = useEditDestinationMutation();
+  console.log(data);
 
   useEffect(() => {
+    if (data.id <= 5) {
+      setCountry(0);
+    } else {
+      setCountry(data.id);
+    }
     setName(data.name);
-    setType(data.type);
     setUrl(data.url);
     setTitle(data.title);
     setMetadescription(data.metadescription);
     setMetakeywords(data.metakeywords);
     setFile(data.photo);
-    sessionStorage.setItem("tId", id);
+    sessionStorage.setItem("destinationId", id);
   }, [id, data]);
 
-  // useEffect(() => {
-  //   if (!file) return;
-  //   let tmp = [];
-  //   for (let i = 0; i < file.length; i++) {
-  //     tmp.push(URL.createObjectURL(file[i]));
-  //   }
-  //   const objectUrls = tmp;
-  //   if (file) {
-  //     setPreviews(objectUrls);
-  //     setStatus(true);
-  //   } else {
-  //     setPreviews(false);
-  //     setStatus(false);
-  //   }
-
-  //   for (let i = 0; i < objectUrls.length; i++) {
-  //     return () => {
-  //       URL.revokeObjectURL(objectUrls[i]);
-  //     };
-  //   }
-  // }, [file]);
-
   const onSubmit = async () => {
-    let data2 = new FormData();
-    data2.append("parent", 0);
-    data2.append("name", name);
-    data2.append("type", type);
-    data2.append("url", url);
-    data2.append("photo", file);
-    data2.append("description", editorRef.current.getContent());
-    data2.append("title", title);
-    data2.append("metakeywords", metakeywords);
-    data2.append("metadescription", metadescription);
-    data2.append("sorting", null);
-    data2.append("created_at", null);
-    data2.append("updated_at", null);
-    if (data2) {
-      await editTourType(data2).then((res) => console.log(res));
+    let data = new FormData();
+    data.append("parent", country);
+    data.append("name", name);
+    data.append("url", url);
+    data.append("photo", file);
+    data.append("description", editorRef.current.getContent());
+    data.append("title", title);
+    data.append("metakeywords", metakeywords);
+    data.append("metadescription", metadescription);
+    data.append("lang", "ru");
+    if (data) {
+      await editDestination(data)
+        .then((res) => console.log(res))
+        .catch((e) => console.log(e));
+    //   console.log(data.forEach(e => console.log(e)));
     }
   };
 
   return (
-    <div className={classes.ReviewComponent}>
-      <h1>Редактирование</h1>
+    <div className={classes.EditDestinationComp}>
+      <h1>Добавление</h1>
       {data.id ? (
         <form className={classes.form}>
           <TextField
             required
             id="outlined-required"
-            label="Название"
+            label="Название города*:"
             defaultValue={data.name}
             size="small"
             onChange={(e) => setName(e.target.value)}
             sx={{ width: "100%" }}
           />
+          {/* <FormControl fullWidth size="small">
+          <InputLabel id="demo-simple-select-label">Страна</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Страны"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            {data.slice(0, 5).map((item) => (
+              <MenuItem key={item.id} value={item.id}>
+                {item.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl> */}
           <TextField
             required
             id="outlined-required"
-            label="Ссылка на тип"
-            defaultValue={data.type}
-            onChange={(e) => setType(e.target.value)}
-            size="small"
-            sx={{ width: "100%" }}
-          />
-          <TextField
-            required
-            label="url"
+            label="Ссылка на город*:"
             defaultValue={data.url}
             size="small"
             onChange={(e) => setUrl(e.target.value)}
@@ -109,10 +105,20 @@ const ReviewComponent = () => {
           />
           <TextField
             required
-            label="title"
+            id="outlined-required"
+            label="Title*:"
             defaultValue={data.title}
             size="small"
             onChange={(e) => setTitle(e.target.value)}
+            sx={{ width: "100%" }}
+          />
+          <TextField
+            required
+            id="outlined-required"
+            label="Metakeywords*:"
+            defaultValue={data.metakeywords}
+            size="small"
+            onChange={(e) => setMetakeywords(e.target.value)}
             sx={{ width: "100%" }}
           />
           <Editor
@@ -159,31 +165,26 @@ const ReviewComponent = () => {
           <TextField
             required
             id="outlined-required"
-            label="Metakeywords"
-            defaultValue={data.metakeywords}
-            onChange={(e) => setMetakeywords(e.target.value)}
-            size="small"
-            sx={{ width: "100%" }}
-          />
-          <TextField
-            required
-            id="outlined-required"
-            label="Metadescription"
+            label="Metadescription*:"
             defaultValue={data.metadescription}
-            onChange={(e) => setMetadescription(e.target.value)}
             size="small"
+            onChange={(e) => setMetadescription(e.target.value)}
             sx={{ width: "100%" }}
           />
           <div className={classes.image}>
             <h3>Фото типа</h3>
             <div className={classes.img_wrapper}>
-              {previews || status ? (
+              {previews ? (
                 previews.map((pic) => {
                   return <img src={pic} className={classes.img1} alt="__" />;
                 })
               ) : (
                 <img
-                  src={`https://turi-uzbekistana.ru/images/tourtypes/${data?.photo}`}
+                  src={
+                    data.id > 5
+                      ? `https://turi-uzbekistana.ru/images/city/${data?.photo}`
+                      : `https://turi-uzbekistana.ru/images/country/${data?.photo}`
+                  }
                   className={classes.img1}
                   alt="__"
                 />
@@ -195,22 +196,20 @@ const ReviewComponent = () => {
               sx={{ width: "100%", my: "20px" }}
             />
           </div>
-          <div>
-            <Button
-              size="medium"
-              onClick={onSubmit}
-              variant="contained"
-              sx={{ color: "#000" }}
-            >
-              Сохранить изменения
-            </Button>
-          </div>
+          <Button
+            variant="contained"
+            onClick={onSubmit}
+            size="small"
+            sx={{ width: "250px" }}
+          >
+            Сохранить
+          </Button>
         </form>
       ) : (
-        <div>Looding..</div>
+        <div>Loading...</div>
       )}
     </div>
   );
 };
 
-export default ReviewComponent;
+export default EditDestinationComp;

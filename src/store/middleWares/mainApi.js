@@ -14,14 +14,23 @@ export const mainApi = createApi({
       query: () => "tourType",
       providesTags: ["TourTypes"],
     }),
+    getTourTypesOne: builder.query({
+      query: (id) => `tourType/${id}`,
+      providesTags: ["TourTypes"],
+    }),
     addTourType: builder.mutation({
       query: (payload) => ({
         url: "/tourType",
         method: "POST",
+        body: payload
+      }),
+      invalidatesTags: ["TourTypes"],
+    }),
+    editTourType: builder.mutation({
+      query: (payload) => ({
+        url: `/tourType/${sessionStorage.getItem('tId')}`,
+        method: "PUT",
         body: payload,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
       }),
       invalidatesTags: ["TourTypes"],
     }),
@@ -40,5 +49,7 @@ export const {
   useGetAllToursQuery,
   useGetAllTourTypesQuery,
   useDeleteTourTypesMutation,
-  useAddTourTypeMutation
+  useAddTourTypeMutation,
+  useGetTourTypesOneQuery,
+  useEditTourTypeMutation
 } = mainApi;

@@ -51,7 +51,7 @@ const DestTableComp2 = ({ data, firstNewsIndex, lastNewsIndex }) => {
                 </TableCell>
                 <TableCell align="right">
                   <div className="icons">
-                    <div className="icons__item" onClick={()=> navigate(`/main/tour_types/edit/${row.id}`)}>
+                    <div className="icons__item" onClick={()=> navigate(`/main/destinations/edit/${row.id}`)}>
                       <i
                         className="fa-solid fa-pen-to-square"
                       />

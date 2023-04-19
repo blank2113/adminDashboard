@@ -228,18 +228,39 @@ const AddTourComp = ({ data }) => {
             onInit={(evt, editor) => (editorRef.current = editor)}
             initialValue="<p>This is the initial content of the editor.</p>"
             init={{
-              height: 500,
-              menubar: true,
-              plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste code help wordcount",
-              ],
-              toolbar:
-                "undo redo | formatselect | " +
-                "bold italic backcolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
+              selector: "textarea.summernote",
+              language_url: "./assets/plugins/TinyMCE/language/ru_RU.js",
+              plugins: `print preview paste importcss searchreplace autolink autosave save 
+                  directionality code visualblocks visualchars fullscreen image 
+                  link media template codesample table charmap hr pagebreak nonbreaking 
+                  anchor insertdatetime advlist lists wordcount textpattern noneditable 
+                  help charmap quickbars emoticons`,
+              menubar: "file edit view insert format tools table help",
+              toolbar: `undo redo | code | bold italic underline strikethrough | 
+                  fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | 
+                  outdent indent |  numlist bullist | forecolor backcolor removeformat | charmap emoticons | 
+                  preview print | insertfile image media link anchor`,
+              visualblocks_default_state: true,
+              toolbar_sticky: true,
+              autosave_ask_before_unload: true,
+              autosave_interval: "30s",
+              autosave_prefix: "{path}{query}-{id}-",
+              autosave_restore_when_empty: false,
+              autosave_retention: "2m",
+              image_advtab: true,
+              importcss_append: true,
+              image_title: true,
+              automatic_uploads: true,
+              file_picker_types: "image",
+              images_file_types: "png,jpg,svg,webp",
+              // images_upload_url: ${location.pathname + location.search}&TinyMCEuploadImage,
+              height: 600,
+              image_caption: true,
+              quickbars_selection_toolbar:
+                "bold italic | quicklink h2 h3 blockquote quickimage quicktable",
+              noneditable_noneditable_class: "mceNonEditable",
+              toolbar_mode: "sliding",
+              contextmenu: "link image table",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}

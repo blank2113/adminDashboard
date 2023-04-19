@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 const TableTypes = ({ data, firstNewsIndex, lastNewsIndex }) => {
   const [deleteTourType]= useDeleteTourTypesMutation()
   const navigate = useNavigate()
-  console.log(data);
   return (
     <TableContainer
       component={Paper}

@@ -11,16 +11,45 @@ export const citiesApi = createApi({
       query: () => "destinations",
       providesTags: ["cities"],
     }),
-    deleteTourTypes: builder.mutation({
+    getOneDestination: builder.query({
+      query: (id) => `destinations/${id}`,
+      providesTags: ["cities"],
+    }),
+    addDestination: builder.mutation({
+      query: (payload) => ({
+        url: "destinations",
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["cities"],
+    }),
+    editDestination: builder.mutation({
+      query: (payload) => ({
+        url: `destinations/${sessionStorage.getItem("destinationId")}`,
+        method: "PUT",
+        body: payload,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+        },
+      }),
+      invalidatesTags: ["cities"],
+    }),
+    deleteDestination: builder.mutation({
       query: (id) => ({
-        url: `/tourType/${id}`,
+        url: `destinations/${id}`,
         method: "DELETE",
         credentials: "include",
-        headers: { "Content-Type": "application/json" },
       }),
-      invalidatesTags: ["TourTypes"],
+      invalidatesTags: ["cities"],
     }),
   }),
 });
 
-export const { useGetAllCitiesQuery } = citiesApi;
+export const {
+  useGetAllCitiesQuery,
+  useAddDestinationMutation,
+  useDeleteDestinationMutation,
+  useGetOneDestinationQuery,
+  useEditDestinationMutation,
+} = citiesApi;

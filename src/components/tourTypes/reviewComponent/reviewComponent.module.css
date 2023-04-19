@@ -22,3 +22,8 @@
     grid-gap: 25px;
     margin: 40px 0;
   }
+  .img1{
+    width:500px;
+    height:500px;
+  object-fit: cover;    
+  }
